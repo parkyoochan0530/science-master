@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Master</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+<h1>Science Master</h1>
+
+<div class="top-bar">
+<input
+type="text"
+id="searchInput"
+placeholder="개념 검색..."
+oninput="searchConcept()">
+
+
+<button onclick="toggleDarkMode()">
+🌙 다크모드
+</button>
+</div>
+</header>
+
+
+
+<div class="stats">
+
+<div>LV <span id="level">1</span></div>
+
+<div>XP <span id="xp">0</span></div>
+
+<div>정답률 <span id="accuracy">0</span>%</div>
+
+<div>정답 <span id="correctCount">0</span></div>
+
+<div>오답 <span id="wrongCount">0</span></div>
+
+<div id="todayStats">
+    <h3>📊 오늘의 학습</h3>
+
+    <div>오늘 푼 문제:
+        <span id="todaySolved">0</span>
+    </div>
+
+    <div>오늘 정답:
+        <span id="todayCorrect">0</span>
+    </div>
+
+    <div>오늘 정답률:
+        <span id="todayAccuracy">0</span>%
+    </div>
+</div>
+
+</div>
+
+<div id="achievements">
+<h3>🏆 업적</h3>
+<ul id="achievementList"></ul>
+</div>
+
+<div class="xp-bar">
+    <div id="xpFill"></div>
+</div>
+
+<nav>
+
+<button onclick="showTab('flashcards')">
+공식카드
+</button>
+<button onclick="nextCard()">
+다음 카드
+</button>
+
+<button onclick="showTab('quiz')">
+퀴즈
+</button>
+
+<button onclick="showTab('wrong')">
+오답노트
+</button>
+
+<button onclick="showTab('concepts')">
+개념
+</button>
+
+</nav>
+
+<main>
+
+<section id="flashcards">
+
+<h2>공식 카드</h2>
+
+<div class="card"
+onclick="flipCard()"
+id="flashcard">
+밀도 공식은?
+</div>
+
+</section>
+
+<section id="quiz" class="hidden">
+
+<h2>퀴즈</h2>
+
+<p id="question"></p>
+
+<div id="answers"></div>
+
+<p id="result"></p>
+
+</section>
+
+<section id="wrong" class="hidden">
+
+<h2>오답노트</h2>
+
+<ul id="wrongList"></ul>
+
+</section>
+
+<section id="concepts" class="hidden">
+
+<h2>개념 검색</h2>
+
+
+<div id="conceptResults"></div>
+
+</section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
