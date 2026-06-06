@@ -81,3 +81,66 @@ color:white;
 .dark .stats{
 background:#333;
 }
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:30px;
+    margin-top:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:scale(1.02);
+}
+
+button{
+    border:none;
+    border-radius:10px;
+    padding:10px 15px;
+    margin:5px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.answer-btn{
+    display:block;
+    width:100%;
+    margin:10px 0;
+}
+
+.stats{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    justify-content:center;
+}
+
+.stats div{
+    background:white;
+    padding:10px 15px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+main{
+    max-width:900px;
+    margin:auto;
+}
+
+@media(max-width:600px){
+
+    h1{
+        font-size:28px;
+    }
+
+    .stats{
+        flex-direction:column;
+    }
+
+    button{
+        width:100%;
+    }
+
+}
