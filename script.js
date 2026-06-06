@@ -144,6 +144,8 @@ wrongCount:0
 
 let currentQuiz = 0;
 
+let quizMode = "all";
+
 shuffleCards();
 
 let currentCard = 0;
@@ -301,36 +303,58 @@ function flipCard(){
 
 
 
+
 function loadQuiz(){
 
-    if(currentQuiz>=quizzes.length){
+    let quizList =
+    quizMode === "wrong"
+    ? quizzes.filter(q => q.wrongCount > 0)
+    : quizzes;
 
-        currentQuiz=0;
+    if(quizList.length === 0){
+
+        document
+        .getElementById("question")
+        .innerText =
+        "오답 문제가 없습니다 🎉";
+
+        document
+        .getElementById("answers")
+        .innerHTML = "";
+
+        return;
+
+    }
+
+    if(currentQuiz >= quizList.length){
+
+        currentQuiz = 0;
 
     }
 
     const q =
-    quizzes[currentQuiz];
+    quizList[currentQuiz];
 
     document
     .getElementById("question")
-    .innerText=q.q;
+    .innerText = q.q;
 
     const box =
     document.getElementById("answers");
 
-    box.innerHTML="";
+    box.innerHTML = "";
 
     q.a.forEach((answer,index)=>{
 
         const btn =
         document.createElement("button");
 
-        btn.className="answer-btn";
+        btn.className = "answer-btn";
 
-        btn.innerText=answer;
+        btn.innerText = answer;
 
-        btn.onclick=()=>checkAnswer(index);
+        btn.onclick = () =>
+        checkAnswer(index);
 
         box.appendChild(btn);
 
@@ -366,8 +390,13 @@ function getNextQuiz(){
 
 function checkAnswer(choice){
 
-    const q =
-    quizzes[currentQuiz];
+    let quizList =
+quizMode === "wrong"
+? quizzes.filter(q => q.wrongCount > 0)
+: quizzes;
+
+const q =
+quizList[currentQuiz];
 
     solved++;
 
