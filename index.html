@@ -1,3 +1,8 @@
+<section id="formulas">
+
+
+</section>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,16 +17,23 @@
 <h1>Science Master</h1>
 
 <div class="top-bar">
+
 <input
 type="text"
 id="searchInput"
-placeholder="개념 검색..."
+placeholder="📚 개념 검색..."
 oninput="searchConcept()">
 
+<input
+type="text"
+id="formulaSearch"
+placeholder="📐 공식 검색..."
+oninput="searchFormula()">
 
 <button onclick="toggleDarkMode()">
 🌙 다크모드
 </button>
+
 </div>
 </header>
 
@@ -67,7 +79,14 @@ oninput="searchConcept()">
 </div>
 
 <nav>
-
+<button onclick="
+showTab('formulas');
+document
+.getElementById('formulaResults')
+.classList.remove('hidden-formula');
+">
+공식
+</button>
 <button onclick="showTab('flashcards')">
 개념 카드
 </button>
@@ -91,6 +110,10 @@ oninput="searchConcept()">
 
 <main>
 
+<div id="formulaResults"></div>
+
+<div id="formulaResults" class="hidden-formula"></div>
+
 <section id="flashcards">
 
 <h2>개념 카드</h2>
@@ -106,7 +129,6 @@ id="flashcard">
 <section id="quiz" class="hidden">
 
 <h2>퀴즈</h2>
-
 
 <button onclick="setQuizMode('all')">
 전체 퀴즈
@@ -147,3 +169,5 @@ id="flashcard">
 
 </body>
 </html>
+
+<div id="formulaResults"></div>
