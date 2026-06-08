@@ -761,6 +761,34 @@ formula:"ε = -N(감은 수)ΔΦ/Δt"
 },
 
 {
+title:"전파속도",
+subject:"물리",
+category:"파동",
+formula:"v = fλ"
+},
+
+{
+title:"스넬의 법칙",
+subject:"물리",
+category:"파동",
+formula:"n₁sinθ₁ = n₂sinθ₂"
+},
+
+{
+title:"도플러 효과",
+subject:"물리",
+category:"파동",
+formula:"f' = f(v±vo)/(v∓vs)"
+},
+
+{
+title:"맥놀이 수",
+subject:"물리",
+category:"파동",
+formula:"맥놀이수 = |f₁ - f₂|"
+},
+
+{
 title:"렌즈 제작자의 공식",
 subject:"물리",
 category:"광학",
