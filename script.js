@@ -1,3 +1,90 @@
+function searchFormula(){
+
+    const keyword =
+    document
+    .getElementById("formulaSearch")
+    .value
+    .toLowerCase()
+    .replace(/\s/g,"")
+    .normalize("NFKC");
+
+    const box =
+    document
+    .getElementById("formulaResults");
+
+    box.innerHTML = "";
+
+    formulas
+    .filter(item => {
+
+        const title =
+        (item.title || "")
+        .toLowerCase()
+        .replace(/\s/g,"")
+        .normalize("NFKC");
+
+        const subject =
+        (item.subject || "")
+        .toLowerCase()
+        .replace(/\s/g,"")
+        .normalize("NFKC");
+
+        const category =
+        (item.category || "")
+        .toLowerCase()
+        .replace(/\s/g,"")
+        .normalize("NFKC");
+
+        const formula =
+        (item.formula || "")
+        .toLowerCase()
+        .replace(/\s/g,"")
+        .normalize("NFKC");
+
+        return (
+
+    keyword === "" ||
+
+    title.includes(keyword) ||
+
+    subject.includes(keyword) ||
+
+    category.includes(keyword) ||
+
+    formula.includes(keyword)
+
+);
+
+    })
+    .forEach(item => {
+
+        const div =
+        document.createElement("div");
+
+        div.innerHTML =
+
+        "<h3>" + item.title + "</h3>" +
+
+        "<p>📚 <b>과목:</b> " +
+        item.subject +
+        "</p>" +
+
+        "<p>🧩 <b>카테고리:</b> " +
+        item.category +
+        "</p>" +
+
+        "<p>📐 <b>공식:</b></p>" +
+
+        "<p>" +
+        item.formula +
+        "</p><hr>";
+
+        box.appendChild(div);
+
+    });
+
+}
+
 function checkAchievements(){
 
     if(correct >= 1){
@@ -123,7 +210,7 @@ const concepts = [
 
 {title:"중력",subject:"물리",category:"역학",content:"지구가 물체를 중심 방향으로 끌어당기는 힘이다."},
 
-{title:"탄성력",subject:"물리",category:"역학",content:"변형된 물체가 원래 상태로 돌아가려는 힘이다."},
+{title:"탄성력",subject:"물리",category:"역학",content:"변형된 물체가 원래 상태로 돌아가려는 힘이다. F = -kx로 구한다."},
 
 {title:"탄성",subject:"물리",category:"역학",content:"힘을 받아 변형된 물체가 힘이 제거되면 원래 모양으로 돌아가는 성질이다."},
 
@@ -173,9 +260,9 @@ const concepts = [
 
 {title:"진동수",subject:"물리",category:"역학",content:"1초 동안 반복되는 진동 횟수이다. 단위는 Hz이다."},
 
-{title:"구심 가속도",subject:"물리",category:"역학",content:"원운동하는 물체가 중심 방향으로 가지는 가속도이다."},
+{title:"구심 가속도",subject:"물리",category:"역학",content:"원운동하는 물체가 중심 방향으로 가지는 가속도이다. a = v² / r으로 구한다."},
 
-{title:"구심력",subject:"물리",category:"역학",content:"원운동을 유지하기 위해 중심 방향으로 작용하는 힘이다."},
+{title:"구심력",subject:"물리",category:"역학",content:"원운동을 유지하기 위해 중심 방향으로 작용하는 힘이다.F = ma = mv² / r으로 구한다."},
 
 {title:"관성력",subject:"물리",category:"역학",content:"가속하는 기준계에서 관찰되는 가상의 힘이다."},
 
@@ -413,6 +500,8 @@ const concepts = [
 
 {title:"정상파",subject:"물리",category:"파동",content:"반대 방향으로 진행하는 두 파동이 만나 형성되는 파동이다."},
 
+{title:"맥놀이 수",subject:"물리",category:"파동",content:"진동수가 다른 두 파동이 겹칠 때 소리가 커졌다 작아졌다 하는 현상이 1초에 몇 번 반복되는지를 나타내는 수."},
+
 {title:"실상",subject:"물리",category:"광학",content:"빛이 실제로 모여 형성되는 상이다. 스크린에 나타낼 수 있다."},
 
 {title:"허상",subject:"물리",category:"광학",content:"빛이 실제로 모이지 않고 모이는 것처럼 보이는 상이다."},
@@ -443,6 +532,243 @@ const concepts = [
 
 
 ];
+
+
+const formulas = [
+
+{
+title:"무게",
+subject:"물리",
+category:"역학",
+formula:"W = mg"
+},
+
+{
+title:"속도와 시간의 관계식",
+subject:"물리",
+category:"역학",
+formula:"v = v₀ + at"
+},
+
+{
+title:"변위와 시간의 관계식",
+subject:"물리",
+category:"역학",
+formula:"s = v₀t + ½at²"
+},
+
+{
+title:"변위와 속도의 관계식",
+subject:"물리",
+category:"역학",
+formula:"2as = v² - v₀²"
+},
+
+{
+title:"최고점 도달 시간",
+subject:"물리",
+category:"역학",
+formula:"t = v₀/g"
+},
+
+{
+title:"최고점 높이",
+subject:"물리",
+category:"역학",
+formula:"h = v₀²/(2g)"
+},
+
+{
+title:"만유인력",
+subject:"물리",
+category:"역학",
+formula:"F = G(상수)m₁m₂/r²"
+},
+
+{
+title:"용수철 직렬 연결시 용수철 상수",
+subject:"물리",
+category:"역학",
+formula:"1/k = 1/k₁ + 1/k₂"
+},
+
+{
+title:"용수철 병렬 연결시 용수철 상수",
+subject:"물리",
+category:"역학",
+formula:"k = k₁ + k₂"
+},
+
+{
+title:"탄성력",
+subject:"물리",
+category:"역학",
+formula:"F = -kx"
+},
+
+{
+title:"탄성에너지",
+subject:"물리",
+category:"역학",
+formula:"E = ½kx²"
+},
+
+{
+title:"위치에너지",
+subject:"물리",
+category:"역학",
+formula:"Ep = mgh"
+},
+
+{
+title:"운동에너지",
+subject:"물리",
+category:"역학",
+formula:"Ek = ½mv²"
+},
+
+{
+title:"역학적 에너지",
+subject:"물리",
+category:"역학",
+formula:"E = Ek + Ep"
+},
+
+{
+title:"정지 마찰력",
+subject:"물리",
+category:"역학",
+formula:"Fs ≤ μsmgcosθ"
+},
+
+{
+title:"운동 마찰력",
+subject:"물리",
+category:"역학",
+formula:"Fk = μkmgcosθ"
+},
+
+{
+title:"부력",
+subject:"물리",
+category:"역학",
+formula:"F = ρgV"
+},
+
+{
+title:"뉴턴 제2법칙",
+subject:"물리",
+category:"역학",
+formula:"F = ma"
+},
+
+{
+title:"구심가속도",
+subject:"물리",
+category:"역학",
+formula:"a = v²/r"
+},
+
+{
+title:"구심력",
+subject:"물리",
+category:"역학",
+formula:"F = mv²/r"
+},
+
+{
+title:"옴의 법칙",
+subject:"물리",
+category:"전자기학",
+formula:"V = IR"
+},
+
+{
+title:"줄열",
+subject:"물리",
+category:"전자기학",
+formula:"Q = VIt"
+},
+
+{
+title:"전하량이 한 일",
+subject:"물리",
+category:"전자기학",
+formula:"W = VIt"
+},
+
+{
+title:"전력",
+subject:"물리",
+category:"전자기학",
+formula:"P = VI"
+},
+
+{
+title:"자기장의 세기",
+subject:"물리",
+category:"전자기학",
+formula:"B = 자속/S(표면적)"
+},
+
+{
+title:"직선 전류 자기장",
+subject:"물리",
+category:"전자기학",
+formula:"B = kI/r"
+},
+
+{
+title:"원형 전류 자기장",
+subject:"물리",
+category:"전자기학",
+formula:"B = πkI/R"
+},
+
+{
+title:"솔레노이드 자기장",
+subject:"물리",
+category:"전자기학",
+formula:"B = 2πkn(감은 수)I"
+},
+
+{
+title:"자기력",
+subject:"물리",
+category:"전자기학",
+formula:"F = BIlsinθ"
+},
+
+{
+title:"전자가 받는 힘",
+subject:"물리",
+category:"전자기학",
+formula:"F = Bqvsinθ"
+},
+
+{
+title:"회전 반경",
+subject:"물리",
+category:"전자기학",
+formula:"r = mv/(Bq)"
+},
+
+{
+title:"패러데이 법칙",
+subject:"물리",
+category:"전자기학",
+formula:"ε = -N(감은 수)ΔΦ/Δt"
+},
+
+{
+title:"렌즈 제작자의 공식",
+subject:"물리",
+category:"광학",
+formula:"a:물체와 거울 혹은 렌즈 중심 사이의 거리, b:상과 거울 혹은 렌즈 중심 사이의 거리, f:초점 거리, m:상의 배율, 1/a + 1/b = 1/f, m = -b/a"
+}
+
+];
+
 
 const quizzes = [
 
@@ -627,25 +953,19 @@ function renderWrongs(){
 
 function showTab(id){
 
-document
-.querySelectorAll("main section")
-.forEach(sec=>{
+    document
+    .querySelectorAll("main section")
+    .forEach(sec=>{
+        sec.classList.add("hidden");
+    });
 
-sec.classList.add("hidden");
+    document
+    .getElementById(id)
+    .classList.remove("hidden");
 
-if(id === "quiz"){
-    loadQuiz();
-}
-
-if(id === "concepts"){
-    searchConcept();
-}
-
-})
-
-document
-.getElementById(id)
-.classList.remove("hidden");
+    document
+    .getElementById("formulaResults")
+    .classList.add("hidden-formula");
 
 }
 
@@ -893,17 +1213,29 @@ function searchConcept(){
     .filter(item => {
 
     const title =
-    item.title
+    (item.title || "")
     .toLowerCase()
-    .replace(/\s/g, "");
+    .replace(/\s/g,"");
+
+    const subject =
+    (item.subject || "")
+    .toLowerCase()
+    .replace(/\s/g,"");
+
+    const category =
+    (item.category || "")
+    .toLowerCase()
+    .replace(/\s/g,"");
 
     const content =
-    item.content
+    (item.content || "")
     .toLowerCase()
-    .replace(/\s/g, "");
+    .replace(/\s/g,"");
 
     return (
         title.includes(keyword) ||
+        subject.includes(keyword) ||
+        category.includes(keyword) ||
         content.includes(keyword)
     );
 
@@ -1028,3 +1360,7 @@ searchConcept();
 checkAchievements();
 
 renderAchievements();
+
+showTab("formulas")
+
+searchFormula();
