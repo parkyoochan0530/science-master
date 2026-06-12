@@ -1,3 +1,5 @@
+
+
 function searchFormula(){
 
     const keyword =
@@ -61,6 +63,8 @@ function searchFormula(){
         const div =
         document.createElement("div");
 
+        div.className = "formula-card";
+        
         div.innerHTML =
 
         "<h3>" + item.title + "</h3>" +
@@ -177,8 +181,15 @@ JSON.parse(
 localStorage.getItem("achievements")
 ) || [];
 
-let todaySolved = 0;
-let todayCorrect = 0;
+let todaySolved =
+Number(
+localStorage.getItem("todaySolved")
+) || 0;
+
+let todayCorrect =
+Number(
+localStorage.getItem("todayCorrect")
+) || 0;
 
 let cardFront = true;
 let cardIndex = 0;
@@ -719,20 +730,6 @@ formula:"B = kI/r"
 },
 
 {
-title:"원형 전류 자기장",
-subject:"물리",
-category:"전자기학",
-formula:"B = πkI/R"
-},
-
-{
-title:"솔레노이드 자기장",
-subject:"물리",
-category:"전자기학",
-formula:"B = 2πkn(감은 수)I"
-},
-
-{
 title:"자기력",
 subject:"물리",
 category:"전자기학",
@@ -902,6 +899,16 @@ localStorage.setItem(
 JSON.stringify(quizzes)
 );
 
+localStorage.setItem(
+"todaySolved",
+todaySolved
+);
+
+localStorage.setItem(
+"todayCorrect",
+todayCorrect
+);
+
 }
 
 function updateStats(){
@@ -1047,6 +1054,23 @@ function flipCard(){
 
 
 function loadQuiz(){
+
+    const today =
+new Date().toLocaleDateString();
+
+const lastDate =
+localStorage.getItem("lastDate");
+
+if(lastDate !== today){
+
+    todaySolved = 0;
+    todayCorrect = 0;
+
+    localStorage.setItem("todaySolved",0);
+    localStorage.setItem("todayCorrect",0);
+    localStorage.setItem("lastDate",today);
+
+}
 
     let quizList =
     quizMode === "wrong"
