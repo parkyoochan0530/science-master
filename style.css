@@ -272,3 +272,33 @@ main{
 .hidden-formula{
     display:none;
 }
+
+.dark #formulaResults div{
+    background:#222;
+    color:white;
+}
+
+.dark #formulaResults h3{
+    color:#60a5fa;
+}
+
+.dark #formulaResults hr{
+    border-color:#555;
+}
+
+.dark #formulaResults p{
+    color:white;
+}
+
+\.formula-card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    margin-top:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+.dark .formula-card{
+    background:#222;
+    color:white;
+}
